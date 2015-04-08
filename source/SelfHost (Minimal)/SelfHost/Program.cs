@@ -1,5 +1,6 @@
 ﻿using Microsoft.Owin.Hosting;
 using System;
+using System.Configuration;
 using Thinktecture.IdentityServer.Core.Logging;
 
 namespace SelfHost
@@ -11,7 +12,7 @@ namespace SelfHost
             Console.Title = "IdentityServer3 SelfHost";
             LogProvider.SetCurrentLogProvider(new DiagnosticsTraceLogProvider());
 
-            const string url = "https://localhost:44333/core";
+            var url = ConfigurationManager.AppSettings["Url"];
             using (WebApp.Start<Startup>(url))
             {
                 Console.WriteLine("\n\nServer listening at {0}. Press enter to stop", url);
